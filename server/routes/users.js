@@ -3,8 +3,29 @@ const {
   models: { User },
 } = require('../db');
 
+
+router.get('/unassigned', async(req,res, next) => {
+  try {
+    const unassigned = await User.findUnassignedStudents();
+    res.send(unassigned);
+  }
+  catch(e){
+    next(e)
+  }
+})
+
+router.get('/teachers',async(req,res,next)=>{
+  try {
+    const teacher = await User.findTeachersAndMentees();
+    res.send(teacher)
+  }
+  catch(e){
+    next(e)
+  }
+})
+
 /**
- * All of the routes in this are mounted on /api/users
+ * All of the routes in this are mounted on /api/users/
  * For instance:
  *
  * router.get('/hello', () => {...})
