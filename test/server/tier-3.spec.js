@@ -118,7 +118,7 @@ describe('Tier 3: Virtual Fields, Route Parameters, DELETE Routes', () => {
         );
       });
 
-      xit('deletes an existing user by their id and responds with 204', async () => {
+      it('deletes an existing user by their id and responds with 204', async () => {
         let moe = users.MOE;
         const response = await app.delete(`/api/users/${moe.id}`);
         expect(response.status).to.equal(204);
@@ -128,14 +128,14 @@ describe('Tier 3: Virtual Fields, Route Parameters, DELETE Routes', () => {
         expect(await User.findAll()).to.have.lengthOf(4);
       });
 
-      xit('responds with 404 if the user does not exist', async () => {
+      it('responds with 404 if the user does not exist', async () => {
         const response = await app.delete('/api/users/10000');
         expect(response.status).to.equal(404);
         // No users should have been deleted
         expect(await User.findAll()).to.have.lengthOf(5, 'Oops');
       });
 
-      xit('responds with 400 if the id is not a number', async () => {
+      it('responds with 400 if the id is not a number', async () => {
         const response = await app.delete('/api/users/not_a_valid_id');
         expect(response.status).to.equal(400);
         // No users should have been deleted
