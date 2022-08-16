@@ -64,7 +64,18 @@ User.beforeUpdate(async(user) =>{
   }
 })
 
-
+//ec
+User.prototype.getPeers = async function(){
+  let peer = await User.findAll({
+    where: {
+      mentordId: this.mentorId,
+      name: {
+        [Sequelize.Op.ne]: this.name
+      }
+    }
+  })
+  return peer
+}
 
 //  * We've created the association for you!
 //  *

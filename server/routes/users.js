@@ -40,7 +40,7 @@ router.delete('/:id', async (req, res,next) => {
       res.status(204).send()
     }
   } else {
-    res.status(400).send()
+    res.sendStatus(400)
   }
   }
   catch(e){
@@ -80,6 +80,9 @@ router.put('/:id', async(req,res,next) =>{
     next(e)
   }
 })
+
+//router.get('/')
+
 
 
 /**
